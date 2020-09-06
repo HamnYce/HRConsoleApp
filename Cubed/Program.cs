@@ -117,9 +117,21 @@ namespace HRprog
             int counter = 0;
             foreach (Employee e in employeeList)
             {
+                if (employeeList[counter].Status == true)
+
+                {
+
+                    Console.WriteLine("index: " + counter + " " + e);
+                    counter++;
+                }
+
+                else
+                {
+                    Console.Write("");
+                    counter++;
+                }
                 
-                Console.WriteLine("index: " + counter + " " + e);
-                counter++;
+               
 
             }
         }
@@ -131,7 +143,7 @@ namespace HRprog
 
             n = Convert.ToInt32(Console.ReadLine());
 
-            employeeList.RemoveAt(n);
+            employeeList[n].Status = false;
 
         }
 
@@ -196,10 +208,12 @@ namespace HRprog
         
         string name;
         int age;
+        bool status = true;
 
         
         public string Name { get => name; set => name = value; }
         public int Age { get => age; set => age = value; }
+        public bool Status { get => status; set => status = value; }
     }
     
 
