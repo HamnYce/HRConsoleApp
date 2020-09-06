@@ -13,6 +13,7 @@ namespace HRprog
 
         static void Main(string[] args)
         {
+            Console.Clear();
             
             //Main containers, than act like registers. set n,a,i then set them to as new employees properties
             
@@ -23,7 +24,7 @@ namespace HRprog
             do
             {
                 
-                Console.WriteLine("Press:\n1 to add employee,\n2 to display employees,\n3 to edit,\n4 to delete,\n0 to exit application.");
+                Console.WriteLine("Press:\n1 to add employee,\n2 to display employees,\n3 to delete,\n4 to edit,\n0 to exit application (all data will be deleted on exit).");
                 option = Console.ReadLine();
 
 
@@ -43,8 +44,19 @@ namespace HRprog
 
                         break;
 
+                    case "3"://delete specific employee
+                        employeeDelete();
+
+                        break;
+
+                    case "4"://edit name or age
+                        employeeEdit();
+
+                        break;
+
                     case "0"://exit switch loop
                         switchout = true;
+
                         break;
 
                     default:
@@ -59,26 +71,9 @@ namespace HRprog
                 
 
             
-                            //view employee list
-                           
-            /*
-
-                            //edit employee, from employee list ("which employee would you like to edit")
-                            case "3":
-                                break;
 
 
-                            //delete employee from the list
-                            case "4":
-                                break;
 
-                            default:
-                                Console.WriteLine("I didn't quite get that");
-                                break;
-            */
-           
-
-            
         public static void employeeAdd()
         {
 
@@ -116,22 +111,75 @@ namespace HRprog
 
         }
         
-
         public static void employeeView()
         {
+            
             int counter = 0;
             foreach (Employee e in employeeList)
             {
                 
-                Console.WriteLine("index: " + employeeList[counter]+ " " + e);
+                Console.WriteLine("index: " + counter + " " + e);
                 counter++;
 
             }
         }
 
+        public static void employeeDelete()
+        {
+            int n;
+            Console.WriteLine("Please enter the index of the employee you like to delete");
 
+            n = Convert.ToInt32(Console.ReadLine());
 
+            employeeList.RemoveAt(n);
 
+        }
+
+        public static void employeeEdit()
+        {
+            
+            bool switchout = false;
+            
+            do
+            {
+                Console.WriteLine("edit:\n1 name\n2 age");
+                string option = Console.ReadLine();
+                
+                switch (option)
+                {
+                    case "1"://edit name of specific employee
+                        Console.WriteLine("please enter index of employee you want to edit");
+                        int n = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("now please enter the new name: ");
+                        string newname = Console.ReadLine();
+
+                        employeeList[n].Name = newname;
+                        Console.WriteLine(employeeList[n]);
+
+                        switchout = true;
+                        break;
+
+                    case "2"://edit age of specific employee
+                        Console.WriteLine("please enter index of employee you want to edit");
+                        n = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("now please enter the new age: ");
+                        int newage = Convert.ToInt32(Console.ReadLine());
+
+                        employeeList[n].Age = newage;
+                        Console.WriteLine(employeeList[n]);
+
+                        switchout = true;
+                        break;
+
+                    default:
+                        Console.WriteLine("Please enter a valid input.");
+
+                        break;
+                }
+            } while (switchout == false);
+        }
 
     }//Program Bracket
 
@@ -142,14 +190,14 @@ namespace HRprog
     {//does it matter which variable i use? name vs Name?
         public override string ToString()
         {
-            return "ID: " + Id + "   Name: " + Name + "   Age: " + age;
+            return "   Name: " + Name + "   Age: " + age;
         }
 
-        int id;
+        
         string name;
         int age;
 
-        public int Id { get => id; set => id = value; }
+        
         public string Name { get => name; set => name = value; }
         public int Age { get => age; set => age = value; }
     }
