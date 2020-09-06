@@ -17,35 +17,51 @@ namespace HRprog
             //Main containers, than act like registers. set n,a,i then set them to as new employees properties
             
             string option;
+            bool switchout = false;
             //List<Employee> employeeList = new List<Employee>();
-            
-            
-            Console.WriteLine("Press,1 to add employee, 2 to display employees,3 to edit, 4 to delete");
-            option = Console.ReadLine();
+
+            do
+            {
+                
+                Console.WriteLine("Press:\n1 to add employee,\n2 to display employees,\n3 to edit,\n4 to delete,\n0 to exit application.");
+                option = Console.ReadLine();
 
 
-            switch (option)
-            { 
-            //add employee
-               
-            
-                case "1":
-                    employeeAdd();
+                switch (option)
+                {
 
-                break;
-                    
-            }//switch Bracket
 
-            Console.WriteLine(employeeList[0]);
+
+                    case "1"://add employee
+                        employeeAdd();
+
+                        break;
+
+
+                    case "2"://view employee list
+                        employeeView();
+
+                        break;
+
+                    case "0"://exit switch loop
+                        switchout = true;
+                        break;
+
+                    default:
+                        Console.WriteLine("Please enter a valid input.");
+                        break;
+
+                }//switch Bracket
+                
+            } while (switchout == false);
 
         }//Main Bracket
                 
 
-            /*
+            
                             //view employee list
-                            case "2":
-                                break;
-
+                           
+            /*
 
                             //edit employee, from employee list ("which employee would you like to edit")
                             case "3":
@@ -66,53 +82,52 @@ namespace HRprog
         public static void employeeAdd()
         {
 
-            bool choice = true;
+            
 
             
                 string n;
                 int a;
-                int i;
+                
                 //List<Employee> employeeList = new List<Employee>();
                 
-
-                Console.WriteLine("Please input the employees name, age, and ID.");
-                Console.WriteLine("Press enter to continue");
-                Console.ReadKey();
-                Console.Clear();
+                
+                Console.WriteLine("Please input the employee's name and age.");
+                
 
 
-                Console.Write("Please enter ID of the employee: ");
-                i = Convert.ToInt32(Console.ReadLine());
-
-
-                Console.Write("Please enter name of the employee: ");
+                Console.Write("Please enter NAME of the employee: ");
                 n = Console.ReadLine();
 
 
-                Console.Write("Please enter age of the employee: ");
+                Console.Write("Please enter AGE of the employee: ");
                 a = Convert.ToInt32(Console.ReadLine());
 
 
 
-                employeeList.Add(new Employee() { Id = i, Name = n, Age = a });
+                employeeList.Add(new Employee() {Name = n, Age = a });
 
-                foreach (Employee e in employeeList)
-                {
-                    Console.WriteLine("index: " + ind + " " + e);
-                    ind++;
-
-                }
-
-                Console.WriteLine("Would you like to add another employee? (true/false)");
-                choice = Convert.ToBoolean(Console.ReadLine());
+                
+                
+                
+                
 
             
 
 
         }
+        
 
+        public static void employeeView()
+        {
+            int counter = 0;
+            foreach (Employee e in employeeList)
+            {
+                
+                Console.WriteLine("index: " + employeeList[counter]+ " " + e);
+                counter++;
 
-
+            }
+        }
 
 
 
