@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
+
+
 
 namespace HRprog
 {
@@ -13,6 +17,7 @@ namespace HRprog
 
         static void Main(string[] args)
         {
+            
             Console.Clear();
             
             //Main containers, than act like registers. set n,a,i then set them to as new employees properties
@@ -31,7 +36,7 @@ namespace HRprog
                 switch (option)
                 {
 
-
+                    
 
                     case "1"://add employee
                         employeeAdd();
@@ -53,6 +58,12 @@ namespace HRprog
                         employeeEdit();
 
                         break;
+
+                    case "5"://search by name or age
+                        employeeSearch();
+
+                        break;
+ 
 
                     case "0"://exit switch loop
                         switchout = true;
@@ -78,12 +89,8 @@ namespace HRprog
         {
 
             
-
-            
                 string n;
                 int a;
-                
-                //List<Employee> employeeList = new List<Employee>();
                 
                 
                 Console.WriteLine("Please input the employee's name and age.");
@@ -160,6 +167,7 @@ namespace HRprog
                 switch (option)
                 {
                     case "1"://edit name of specific employee
+
                         Console.WriteLine("please enter index of employee you want to edit");
                         int n = Convert.ToInt32(Console.ReadLine());
 
@@ -173,6 +181,7 @@ namespace HRprog
                         break;
 
                     case "2"://edit age of specific employee
+
                         Console.WriteLine("please enter index of employee you want to edit");
                         n = Convert.ToInt32(Console.ReadLine());
 
@@ -186,6 +195,7 @@ namespace HRprog
                         break;
 
                     default:
+
                         Console.WriteLine("Please enter a valid input.");
 
                         break;
@@ -193,9 +203,78 @@ namespace HRprog
             } while (switchout == false);
         }
 
+        public static void employeeSearch()
+        {
+            bool switchout = false;
+
+            Console.WriteLine("Would you like to search by 1. name or 2.age");
+            string option = Console.ReadLine();
+
+            do
+            {
+                switch (option)
+                {
+                    case "1":
+
+
+
+                        List<Employee> results = employeeList.FindAll(findName);
+                        if (results.Count != 0)
+                        {
+                            displayResult(results, "aall");
+                        }
+                        else
+                        {
+                            Console.WriteLine("nope");
+                        }
+
+
+                        
+
+                        
+
+                        break;
+
+                    case "2":
+                        
+                        break;
+
+                    default:
+                        Console.WriteLine("please enter a valid input");
+                        break;
+                }
+            } while (switchout == false);
+
+        }
+
+
+        public static bool findName(Employee en)
+        {
+            
+
+            if (en.Name == "jack")
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public static void displayResult(Employee result, string title)
+        {
+            Console.WriteLine(title);
+            Console.WriteLine("{0} {1}", result.Name, result.Age);
+
+        }
+
+
     }//Program Bracket
 
-
+   
 
 
     class Employee
