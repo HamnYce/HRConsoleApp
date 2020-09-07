@@ -77,7 +77,7 @@ namespace HRprog
                 }//switch Bracket
                 
             } while (switchout == false);
-
+            
         }//Main Bracket
                 
 
@@ -217,19 +217,9 @@ namespace HRprog
                     case "1":
 
 
+                        string searchparam = Console.ReadLine();
 
-                        List<Employee> results = employeeList.FindAll(findName);
-                        if (results.Count != 0)
-                        {
-                            displayResult(results, "aall");
-                        }
-                        else
-                        {
-                            Console.WriteLine("nope");
-                        }
-
-
-                        
+                        Searchlog(searchparam);
 
                         
 
@@ -247,29 +237,28 @@ namespace HRprog
 
         }
 
-
-        public static bool findName(Employee en)
+        
+         public static string Searchlog(string namesearch)
         {
-            
-
-            if (en.Name == "jack")
+            Employee search = new Employee();
+            for (int i =0; i < employeeList.Count; i++)
             {
-                return true;
-            }
+                if (employeeList[i].Name == namesearch)
+                {
+                    return Console.WriteLine("employee with name :" + search.Name + " Age: " + search.Age);
 
-            else
-            {
-                return false;
+                }
+                else
+                {
+                    return Console.Write("");
+                }
             }
+            return Console.Write("");
 
         }
+        
 
-        public static void displayResult(Employee result, string title)
-        {
-            Console.WriteLine(title);
-            Console.WriteLine("{0} {1}", result.Name, result.Age);
-
-        }
+       
 
 
     }//Program Bracket
