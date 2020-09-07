@@ -216,7 +216,7 @@ namespace HRprog
                 {
                     case "1":
 
-
+                        Console.WriteLine("please input employee name");
                         string searchparam = Console.ReadLine();
 
                         Searchlog(searchparam);
@@ -238,23 +238,20 @@ namespace HRprog
         }
 
         
-         public static string Searchlog(string namesearch)
+         public static void Searchlog(string namesearch)
         {
-            Employee search = new Employee();
+            
             for (int i =0; i < employeeList.Count; i++)
             {
                 if (employeeList[i].Name == namesearch)
                 {
-                    return Console.WriteLine("employee with name :" + search.Name + " Age: " + search.Age);
+                     Console.WriteLine("employee with name :" + employeeList[i].Name + " Age: " + employeeList[i].Age);
 
                 }
-                else
-                {
-                    return Console.Write("");
-                }
+                
             }
-            return Console.Write("");
-
+            
+            
         }
         
 
