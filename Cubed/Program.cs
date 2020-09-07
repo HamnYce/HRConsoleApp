@@ -29,7 +29,7 @@ namespace HRprog
             do
             {
                 
-                Console.WriteLine("Press:\n1 to add employee,\n2 to display employees,\n3 to delete,\n4 to edit,\n0 to exit application (all data will be deleted on exit).");
+                Console.WriteLine("Press:\n1 to add employee,\n2 to display employees,\n3 to delete,\n4 to edit,\n5 to search employee by age or name,\n0 to exit application (all data will be deleted on exit).");
                 option = Console.ReadLine();
 
 
@@ -216,17 +216,21 @@ namespace HRprog
                 {
                     case "1":
 
-                        Console.WriteLine("please input employee name");
-                        string searchparam = Console.ReadLine();
+                        Console.WriteLine("please input employee search name: ");
+                        string searchnameparam = Console.ReadLine();
 
-                        Searchlog(searchparam);
+                        searchNameLog(searchnameparam);
 
                         
 
                         break;
 
                     case "2":
-                        
+                        Console.WriteLine("please input employee search age: ");
+                        int searchageparam = Convert.ToInt32(Console.ReadLine());
+
+                        searchAgeLog(searchageparam);
+
                         break;
 
                     default:
@@ -238,7 +242,7 @@ namespace HRprog
         }
 
         
-         public static void Searchlog(string namesearch)
+         public static void searchNameLog(string namesearch)
         {
             
             for (int i =0; i < employeeList.Count; i++)
@@ -251,7 +255,21 @@ namespace HRprog
                 
             }
             
-            
+
+        }
+
+        public static void searchAgeLog(int agesearch)
+        {
+            for (int i = 0; i < employeeList.Count; i++)
+            {
+                if (employeeList[i].Age == agesearch)
+                {
+                    Console.WriteLine("employee with name :" + employeeList[i].Name + " Age: " + employeeList[i].Age);
+
+                }
+
+            }
+
         }
         
 
