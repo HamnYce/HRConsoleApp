@@ -29,7 +29,7 @@ namespace HRprog
             do
             {
                 
-                Console.WriteLine("Press:\n1 to add employee,\n2 to display employees,\n3 to delete,\n4 to edit,\n5 to search employee by age or name,\n0 to exit application (all data will be deleted on exit).");
+                Console.WriteLine("Press:\n1 to add employee,\n2 to display all employees (with index),\n3 to delete,\n4 to edit,\n5 to search employee by age or name,\n0 to exit application (WARNING: all data will be deleted on exit).");
                 option = Console.ReadLine();
 
 
@@ -44,7 +44,7 @@ namespace HRprog
                         break;
 
 
-                    case "2"://view employee list
+                    case "2"://view all employee list
                         employeeView();
 
                         break;
@@ -140,13 +140,43 @@ namespace HRprog
 
         public static void employeeDelete()
         {
-            int n;
-            Console.WriteLine("Please enter the index of the employee you like to delete");
+            bool switchout = false;
+            string option;
+            do
+            {
+                Console.WriteLine("Press enter to begin deletion or press 0 to exit back to main menu.");
+                option = Console.ReadLine();
+                switch (option)
+                {
 
-            n = Convert.ToInt32(Console.ReadLine());
+                    case "":
 
-            employeeList[n].Status = false;
+                        
+                        Console.WriteLine("Please enter the index of the employee you like to delete");
 
+                        int n = Convert.ToInt32(Console.ReadLine());
+
+                        employeeList[n].Status = false;
+
+                        switchout = true;
+
+                        break;
+
+
+                    case "0":
+
+                        switchout = true;
+
+                        break;
+
+
+                    default:
+                        Console.WriteLine("please enter one of the two possible inputs");
+                        break;
+
+                }
+            } while (switchout == false);
+        
         }
 
         public static void employeeEdit()
@@ -239,8 +269,7 @@ namespace HRprog
             } while (switchout == false);
 
         }
-
-        
+ 
          public static void searchNameLog(string namesearch)
         {
             
