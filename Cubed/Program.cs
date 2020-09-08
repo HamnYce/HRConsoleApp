@@ -110,11 +110,6 @@ namespace HRprog
 
                 
                 
-                
-                
-
-            
-
 
         }
         
@@ -206,12 +201,12 @@ namespace HRprog
         public static void employeeSearch()
         {
             bool switchout = false;
-
-            Console.WriteLine("Would you like to search by 1. name or 2.age");
-            string option = Console.ReadLine();
-
             do
             {
+                Console.WriteLine("Would you like to search by 1. name or 2.age");
+                string option = Console.ReadLine();
+
+            
                 switch (option)
                 {
                     case "1":
@@ -220,7 +215,6 @@ namespace HRprog
                         string searchnameparam = Console.ReadLine();
 
                         searchNameLog(searchnameparam);
-
                         
 
                         break;
@@ -230,7 +224,12 @@ namespace HRprog
                         int searchageparam = Convert.ToInt32(Console.ReadLine());
 
                         searchAgeLog(searchageparam);
+                        
+                        break;
 
+                    case "0":
+                        Console.WriteLine("bye");
+                        switchout = true;
                         break;
 
                     default:
@@ -247,10 +246,11 @@ namespace HRprog
             
             for (int i =0; i < employeeList.Count; i++)
             {
+                int indexprint = 0;
                 if (employeeList[i].Name == namesearch)
                 {
-                     Console.WriteLine("employee with name :" + employeeList[i].Name + " Age: " + employeeList[i].Age);
-
+                     Console.WriteLine("Employee Index: ",indexprint , " name: " + employeeList[i].Name + " Age: " + employeeList[i].Age);
+                    indexprint++;
                 }
                 
             }
@@ -260,11 +260,15 @@ namespace HRprog
 
         public static void searchAgeLog(int agesearch)
         {
+            int indexprint = 0;
             for (int i = 0; i < employeeList.Count; i++)
             {
+
                 if (employeeList[i].Age == agesearch)
                 {
-                    Console.WriteLine("employee with name :" + employeeList[i].Name + " Age: " + employeeList[i].Age);
+
+                    Console.WriteLine("employee Index: ",indexprint, " name: " + employeeList[i].Name + " Age: " + employeeList[i].Age);
+                    indexprint++;
 
                 }
 
